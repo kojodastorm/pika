@@ -91,7 +91,7 @@ export default function Main() {
     };
 
     const saveImage = async() => {
-        if (!blob ? .src) {
+        if (!blob ?.src) {
             toast.error("Nothing to save, make sure to add a screenshot first!");
             return;
         }
@@ -136,12 +136,12 @@ export default function Main() {
     };
 
     const copyImage = () => {
-        if (!blob ? .src) {
+        if (!blob ?.src) {
             toast.error("Nothing to copy, make sure to add a screenshot first!");
             return;
         }
         const isSafari = /^((?!chrome|android).)*safari/i.test(
-            navigator ? .userAgent
+            navigator ?.userAgent
         );
         const isNotFirefox = navigator.userAgent.indexOf("Firefox") < 0;
         if (window.pirsch) {
@@ -169,7 +169,7 @@ export default function Main() {
                     toast.success(err)
                 );
         } else if (isNotFirefox) {
-            navigator ? .permissions ?
+            navigator ?.permissions ?
                 .query({ name: "clipboard-write" })
                 .then(async(result) => {
                     if (result.state === "granted") {
@@ -197,14 +197,14 @@ export default function Main() {
 
     const onPaste = (event) => {
         var items =
-            (event ? .clipboardData || event ? .originalEvent ? .clipboardData) ? .items ||
-            event ? .target ? .files ||
-            event ? .dataTransfer ? .files;
+            (event ?.clipboardData || event ?.originalEvent ?.clipboardData) ?.items ||
+            event ?.target ?.files ||
+            event ?.dataTransfer ?.files;
         var index = 0;
         for (index in items) {
             var item = items[index];
-            if (item.kind === "file" || item ? .type ? .includes("image")) {
-                var blob = item ? .kind ? item.getAsFile() : item;
+            if (item.kind === "file" || item ?.type ?.includes("image")) {
+                var blob = item ?.kind ? item.getAsFile() : item;
                 var reader = new FileReader();
                 reader.onload = function(event) {
                     setBlob({...blob, src: event.target.result });
@@ -283,7 +283,7 @@ export default function Main() {
             />     <
             label style = {
                 {
-                    backgroundColor: options ? .customTheme ? .colorStart || "#222",
+                    backgroundColor: options ?.customTheme ?.colorStart || "#222",
                 }
             }
             htmlFor = "startColorPicker"
@@ -374,7 +374,7 @@ export default function Main() {
             />     <
             label style = {
                 {
-                    backgroundColor: options ? .customTheme ? .colorEnd || "#222",
+                    backgroundColor: options ?.customTheme ?.colorEnd || "#222",
                 }
             }
             htmlFor = "startColorPicker"
@@ -764,11 +764,11 @@ export default function Main() {
 
             <
             input type = "checkbox"
-            checked = { options ? .noise || false }
+            checked = { options ?.noise || false }
             className = "text-xl"
             onChange = {
                 (e) =>
-                setOptions({...options, noise: !options ? .noise })
+                setOptions({...options, noise: !options ?.noise })
             }
             />     < /
             div > <
@@ -840,11 +840,11 @@ export default function Main() {
     };
 
     const getImageRadius = () => {
-        if (options ? .padding == "p-0") {
+        if (options ?.padding == "p-0") {
             return "";
         }
 
-        switch (options ? .position) {
+        switch (options ?.position) {
             case "pl-0 pt-0":
                 return "rounded-l-none rounded-tr-none";
             case "pt-0 pr-0":
@@ -859,7 +859,7 @@ export default function Main() {
     };
 
     const renderBrowserBar = () => {
-        switch (options ? .browserBar) {
+        switch (options ?.browserBar) {
             case "hidden":
                 return "";
             case "light":
@@ -1013,7 +1013,7 @@ export default function Main() {
         <
         div className = "w-full lg:w-[350px]" > { renderOptions() } < /div>     <
         div className = "w-full lg:w-[calc(100%-350px)] py-5 lg:p-10 lg:pl-0 flex flex-col-reverse lg:flex-col items-center justify-center overflow-y-auto" > {
-            blob ? .src ? ( <
+            blob ?.src ? ( <
                 >
 
 
@@ -1030,7 +1030,7 @@ export default function Main() {
                     (el) => (wrapperRef.current = el)
                 }
                 style = {
-                    options ? .customTheme ? {
+                    options ?.customTheme ? {
                         background: `linear-gradient(135deg, ${
                             options?.customTheme?.colorStart || "transparent"
                           }, ${
@@ -1041,15 +1041,15 @@ export default function Main() {
                 className = {
                     classnames(
                         "transition-all duration-200 relative ease-in-out flex items-center justify-center overflow-hidden max-w-[80vw] flex-col",
-                        options ? .aspectRatio,
-                        options ? .padding,
-                        options ? .position,
-                        options ? .roundedWrapper, {
-                            [options ? .theme]: !options.customTheme
+                        options ?.aspectRatio,
+                        options ?.padding,
+                        options ?.position,
+                        options ?.roundedWrapper, {
+                            [options ?.theme]: !options.customTheme
                         }
                     )
                 } > { renderBrowserBar() } {
-                    options ? .noise ? ( <
+                    options ?.noise ? ( <
                         div style = {
                             { backgroundImage: `url("/noise.svg")` }
                         }
@@ -1063,10 +1063,10 @@ export default function Main() {
                         ""
                     )
                 } <
-                img src = { blob ? .src }
+                img src = { blob ?.src }
                 style = {
-                    blob ? .w ? {
-                        width: blob ? .w / window.devicePixelRatio + "px",
+                    blob ?.w ? {
+                        width: blob ?.w / window.devicePixelRatio + "px",
                     } : {}
                 }
                 className = { `relative z-10s transition-all duration-200 ease-in-out ${
