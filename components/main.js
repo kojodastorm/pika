@@ -769,7 +769,7 @@ export default function Main() {
                 }
                 style = {
                     options ? .customTheme ? {
-                        background: `linear-gradient(45deg, ${
+                        background: `linear-gradient(135deg, ${
                             options?.customTheme?.colorStart || "transparent"
                           }, ${
                             options?.customTheme?.colorEnd || "transparent"
@@ -823,8 +823,7 @@ export default function Main() {
                 }
                 /> < /
                 div > <
-                /div> < /
-                >
+                /div> < / >
             ) : ( <
                 div className = "flex items-center justify-center min-h-[50vh] lg:min-h-[80vh]" >
                 <
