@@ -121,8 +121,19 @@ function MyApp({ Component, pageProps }) {
                 > {
                     /* This is analytics code for tracking pageviews and events
                               make sure to remove this if you fork this project */
-                }
-
+                } <
+                Script type = "text/javascript"
+                src = "https://api.pirsch.io/pirsch-events.js"
+                id = "pirscheventsjs"
+                data - code = "kaScBB3dGIMhydL8olxpevpomMoFywp1"
+                strategy = "afterInteractive" /
+                >
+                <
+                Script src = "https://api.pirsch.io/pirsch.js"
+                id = "pirschjs"
+                data - code = "kaScBB3dGIMhydL8olxpevpomMoFywp1"
+                strategy = "afterInteractive" /
+                >
                 <
                 />
             ) : (
