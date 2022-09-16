@@ -216,7 +216,8 @@ export default function Main() {
 
     const pickBackground = () => {
         return ( <
-            > {
+            >
+            {
                 bgPicker ? ( <
                     div className = "fixed inset-0 w-full h-full bg-transparent"
                     onClick = {
@@ -294,8 +295,8 @@ export default function Main() {
             <
             span className = "font-mono text-xs text-white/80 drop-shadow" >
             Pick <
-            /span>   <
-            /label >
+            /span>   < /
+            label >
 
 
 
@@ -332,8 +333,8 @@ export default function Main() {
                     }
                 }
             }
-            />     <
-            /div >     <
+            />     < /
+            div > <
             /div>
 
             { /* Pick End Color */ } <
@@ -385,8 +386,8 @@ export default function Main() {
             <
             span className = "font-mono text-xs text-white/80 drop-shadow" >
             Pick <
-            /span>   <
-            /label >
+            /span>   < /
+            label >
 
 
 
@@ -423,10 +424,10 @@ export default function Main() {
                     }
                 }
             }
-            />     <
-            /div>     <
-            /div>     <
-            /div>     <
+            />     < /
+            div > <
+            /div>     < /
+            div > <
             />
         );
     };
@@ -488,10 +489,10 @@ export default function Main() {
 
             <
             option value = "aspect-auto" > Auto < /option>     <
-            option value = "aspect-square" > Square < /option>     <
-            /select>     <
-            /div>     <
-            /div>     <
+            option value = "aspect-square" > Square < /option>     < /
+            select > <
+            /div>     < /
+            div > <
             div className = "flex items-center justify-between w-full" >
 
 
@@ -520,10 +521,10 @@ export default function Main() {
             <
             option value = "hidden" > None < /option>     <
             option value = "light" > Light < /option>     <
-            option value = "dark" > Dark < /option>     <
-            /select>     <
-            /div>     <
-            /div>     <
+            option value = "dark" > Dark < /option>     < /
+            select > <
+            /div>     < /
+            div > <
             div className = "flex items-center justify-between w-full" >
 
 
@@ -553,10 +554,10 @@ export default function Main() {
             option value = "p-0" > None < /option>     <
             option value = "p-10" > Small < /option>     <
             option value = "p-20" > Medium < /option>     <
-            option value = "p-32" > Large < /option>     <
-            /select>     <
-            /div>     <
-            /div>     <
+            option value = "p-32" > Large < /option>     < /
+            select > <
+            /div>     < /
+            div > <
             div className = "" >
 
 
@@ -582,8 +583,8 @@ export default function Main() {
             <
             span className = "w-3 h-3 mr-1" > { ColorPickerIcon } < /span>
             Pick <
-            /div>     <
-            /div> { pickBackground() }     <
+            /div>     < /
+            div > { pickBackground() } <
             /div>     <
             div className = "grid flex-wrap grid-cols-6 mt-1 gap-x-4 gap-y-2" > {
                 [
@@ -614,8 +615,8 @@ export default function Main() {
                     />
                 ))
             } <
-            /div>     <
-            /div>     <
+            /div>     < /
+            div > <
             div className = "flex items-center justify-between w-full" >
 
 
@@ -645,10 +646,10 @@ export default function Main() {
             option value = "rounded-none" > None < /option>     <
             option value = "rounded-lg" > Small < /option>     <
             option value = "rounded-xl" > Medium < /option>     <
-            option value = "rounded-3xl" > Large < /option>     <
-            /select>     <
-            /div>     <
-            /div>     <
+            option value = "rounded-3xl" > Large < /option>     < /
+            select > <
+            /div>     < /
+            div > <
             div className = "flex items-center justify-between w-full" >
 
 
@@ -678,10 +679,10 @@ export default function Main() {
             option value = "rounded-none" > None < /option>     <
             option value = "rounded-lg" > Small < /option>     <
             option value = "rounded-xl" > Medium < /option>     <
-            option value = "rounded-3xl" > Large < /option>     <
-            /select>     <
-            /div>     <
-            /div>     <
+            option value = "rounded-3xl" > Large < /option>     < /
+            select > <
+            /div>     < /
+            div > <
             div className = "flex items-center justify-between w-full" >
 
 
@@ -712,10 +713,10 @@ export default function Main() {
             option value = "pl-0 pt-0" > Top left < /option>     <
             option value = "pt-0 pr-0" > Top right < /option>     <
             option value = "pb-0 pl-0" > Bottom left < /option>     <
-            option value = "pb-0 pr-0" > Bottom right < /option>     <
-            /select>     <
-            /div>     <
-            /div>     <
+            option value = "pb-0 pr-0" > Bottom right < /option>     < /
+            select > <
+            /div>     < /
+            div > <
             div className = "flex items-center justify-between w-full" >
 
 
@@ -745,10 +746,10 @@ export default function Main() {
             option value = "shadow-none" > None < /option>     <
             option value = "shadow-lg" > Small < /option>     <
             option value = "shadow-xl" > Medium < /option>     <
-            option value = "shadow-2xl" > Large < /option>     <
-            /select>     <
-            /div>     <
-            /div>     <
+            option value = "shadow-2xl" > Large < /option>     < /
+            select > <
+            /div>     < /
+            div > <
             div className = "flex items-center justify-between w-full" >
 
 
@@ -769,8 +770,8 @@ export default function Main() {
                 (e) =>
                 setOptions({...options, noise: !options ? .noise })
             }
-            />     <
-            /div>     <
+            />     < /
+            div > <
             /div>     <
             div className = "flex items-center justify-between w-full" >
 
@@ -799,8 +800,8 @@ export default function Main() {
             <
             span className = "w-6 h-6 mr-2" > { SaveIcon } < /span>
             Save <
-            /div>     <
-            /div>     <
+            /div>     < /
+            div > <
             div onClick = {
                 () => setBlob({})
             }
@@ -832,8 +833,8 @@ export default function Main() {
             span className = "px-2 py-px font-mono rounded-lg bg-white/80 dark:bg-black/40" >
             Cmd / Ctrl + S <
             /span>{" "}
-            to save output image < /div>   <
-            /div> </div > < /div > </div >
+            to save output image < /div>   < /
+            div > < /div > < /div > < /div >
 
         );
     };
@@ -893,8 +894,8 @@ export default function Main() {
 
 
                     <
-                    /div>     <
-                    /div >
+                    /div>     < /
+                    div >
                 );
             case "dark":
                 return ( <
@@ -928,8 +929,8 @@ export default function Main() {
 
 
                     <
-                    /div>     <
-                    /div >
+                    /div>     < /
+                    div >
                 );
             case "default":
                 return "";
@@ -977,8 +978,8 @@ export default function Main() {
         <
         span className = "w-5 h-5 mx-1" > { CoffeeIcon } < /span>
         Buy me a coffee <
-        /a>     <
-        /div>
+        /a>     < /
+        div >
     );
 
     return ( <
@@ -1082,8 +1083,8 @@ export default function Main() {
                         });
                     }
                 }
-                />     <
-                /div >     <
+                />     < /
+                div > <
                 /div> </ >
             ) : ( <
                 div className = "flex items-center justify-center min-h-[50vh] lg:min-h-[80vh]" >
@@ -1107,8 +1108,8 @@ export default function Main() {
                 span className = "w-6 h-6 mb-2" > { PasteIcon } < /span>     <
                 p > Paste your screenshot(Cmd / Ctrl + V) < /p>     <
                 p > or drag and drop your screenshot here < /p>     <
-                p > or click here to add one < /p>     <
-                /label >     <
+                p > or click here to add one < /p>     < /
+                label > <
                 /div>
             )
         } <
@@ -1118,8 +1119,8 @@ export default function Main() {
 
 
         <
-        /div>     <
-        /div>     <
+        /div>     < /
+        div > <
         /div>
     );
 }
