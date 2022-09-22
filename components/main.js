@@ -11,7 +11,7 @@ import {
     GithubIcon,
     ColorPickerIcon,
     CoffeeIcon,
-} from "ui/icons";
+} from "ui/icons.js";
 
 const isValidHexColor = "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
 
@@ -135,25 +135,29 @@ export default function Main() {
             });
     };
 
-    const copyImage = () => {
+    const copyImage = async() => {
         if (!blob ?.src) {
             toast.error("Nothing to copy, make sure to add a screenshot first!");
             return;
         }
+        toast.error("1");
         const isSafari = /^((?!chrome|android).)*safari/i.test(
             navigator ?.userAgent
         );
         const isNotFirefox = navigator.userAgent.indexOf("Firefox") < 0;
         if (window.pirsch) {
             pirsch("🙌 Screenshot copied");
+            toast.error("2");
         }
 
         if (isSafari) {
+        	toast.error("3");
             navigator.clipboard
                 .write([
                     new ClipboardItem({
                         "image/png": new Promise(async(resolve, reject) => {
                             try {
+                                toast.error("1");
                                 await snapshotCreator();
                                 const blob = await snapshotCreator();
                                 resolve(new Blob([blob], { type: "image/png" }));
@@ -169,28 +173,33 @@ export default function Main() {
                     toast.success(err)
                 );
         } else if (isNotFirefox) {
-            navigator ?.permissions ?
-                .query({ name: "clipboard-write" })
+        	toast.error("4");
+            navigator ?.permissions ?.query({ name: "clipboard-write" })
                 .then(async(result) => {
+                toast.error("4-0");
                     if (result.state === "granted") {
+                    	toast.error("4-1");
                         const type = "image/png";
                         await snapshotCreator();
                         const blob = await snapshotCreator();
-                        let data = [new ClipboardItem({
-                            [type]: blob
-                        })];
+                        let data = [new ClipboardItem({[type]: blob })];
                         navigator.clipboard
                             .write(data)
                             .then(() => {
                                 // Success
+                                toast.error("4-2");
                             })
                             .catch((err) => {
                                 // Error
+                                toast.error("4-3");
                                 console.error("Error:", err);
                             });
+                    
                     }
+                    toast.error("4-4");
                 });
         } else {
+        	toast.error("5");
             alert("Firefox does not support this functionality");
         }
     };
@@ -552,8 +561,8 @@ export default function Main() {
 
             <
             option value = "p-0" > None < /option>     <
-            option value = "p-10" > Small < /option>     <
-            option value = "p-20" > Medium < /option>     <
+            option value = "p-5" > Small < /option>     <
+            option value = "p-10" > Medium < /option>     <
             option value = "p-32" > Large < /option>     < /
             select > <
             /div>     < /
