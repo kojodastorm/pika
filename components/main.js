@@ -23,8 +23,8 @@ export default function Main() {
         aspectRatio: "aspect-auto",
         theme: "bg-gradient-to-br from-indigo-400 via-blue-400 to-purple-600",
         customTheme: {
-            colorStart: "#ff40ff",
-            colorEnd: "#fec700",
+            colorStart: "#022c54",
+            colorEnd: "#f3c04d",
         },
         padding: "p-20",
         rounded: "rounded-xl",
@@ -253,7 +253,7 @@ export default function Main() {
             <div className = "absolute top-[5%] right-[5%] opacity-50 cursor-pointer hover:opacity-100 z-10"
             onClick = {
                 () => setBGPicker(false)
-            } > ✕
+            } >
 
 
 
@@ -944,10 +944,11 @@ export default function Main() {
                 img src = { blob?.src }
                 style = {
                     blob?.w ? {
-                        width: blob?.w / window.devicePixelRatio + "px",
+                        width: blob?.w / window.devicePixelRatio + "px", 
+                        paddingTop: 0 + "px", paddingLeft: 0.4 + "em", paddingRight: 0.4 + "em", paddingBottom: 0.4 + "em",
                     } : {}
                 }
-                className = { `relative z-10s transition-all duration-200 ease-in-out ${
+                className = { `relative z-10s transition-all duration-200 ease-in-out py-[10px] bg-white/80 px-4 ${
                       options?.shadow
                     } ${options?.rounded} ${getImageRadius()} ${
                       options?.browserBar == "hidden" ? "" : "rounded-t-none"
