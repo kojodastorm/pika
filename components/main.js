@@ -136,13 +136,13 @@ export default function Main() {
     };
 
     const copyImage = async() => {
-        if (!blob ?.src) {
+        if (!blob?.src) {
             toast.error("Nothing to copy, make sure to add a screenshot first!");
             return;
         }
         toast.error("1");
         const isSafari = /^((?!chrome|android).)*safari/i.test(
-            navigator ?.userAgent
+            navigator?.userAgent
         );
         const isNotFirefox = navigator.userAgent.indexOf("Firefox") < 0;
         if (window.pirsch) {
@@ -151,7 +151,7 @@ export default function Main() {
         }
 
         if (isSafari) {
-        	toast.error("3");
+            toast.error("3");
             navigator.clipboard
                 .write([
                     new ClipboardItem({
@@ -173,16 +173,18 @@ export default function Main() {
                     toast.success(err)
                 );
         } else if (isNotFirefox) {
-        	toast.error("4");
-            navigator ?.permissions ?.query({ name: "clipboard-write" })
+            toast.error("4");
+            navigator?.permissions?.query({ name: "clipboard-write" })
                 .then(async(result) => {
-                toast.error("4-0");
+                    toast.error("4-0");
                     if (result.state === "granted") {
-                    	toast.error("4-1");
+                        toast.error("4-1");
                         const type = "image/png";
                         await snapshotCreator();
                         const blob = await snapshotCreator();
-                        let data = [new ClipboardItem({[type]: blob })];
+                        let data = [new ClipboardItem({
+                            [type]: blob
+                        })];
                         navigator.clipboard
                             .write(data)
                             .then(() => {
@@ -194,26 +196,26 @@ export default function Main() {
                                 toast.error("4-3");
                                 console.error("Error:", err);
                             });
-                    
+
                     }
                     toast.error("4-4");
                 });
         } else {
-        	toast.error("5");
+            toast.error("5");
             alert("Firefox does not support this functionality");
         }
     };
 
     const onPaste = (event) => {
         var items =
-            (event ?.clipboardData || event ?.originalEvent ?.clipboardData) ?.items ||
-            event ?.target ?.files ||
-            event ?.dataTransfer ?.files;
+            (event?.clipboardData || event?.originalEvent?.clipboardData)?.items ||
+            event?.target?.files ||
+            event?.dataTransfer?.files;
         var index = 0;
         for (index in items) {
             var item = items[index];
-            if (item.kind === "file" || item ?.type ?.includes("image")) {
-                var blob = item ?.kind ? item.getAsFile() : item;
+            if (item.kind === "file" || item?.type?.includes("image")) {
+                var blob = item?.kind ? item.getAsFile() : item;
                 var reader = new FileReader();
                 reader.onload = function(event) {
                     setBlob({...blob, src: event.target.result });
@@ -224,8 +226,7 @@ export default function Main() {
     };
 
     const pickBackground = () => {
-        return ( <
-            >
+        return ( <>
             {
                 bgPicker ? ( <
                     div className = "fixed inset-0 w-full h-full bg-transparent"
@@ -236,8 +237,7 @@ export default function Main() {
                 ) : (
                     ""
                 )
-            } <
-            div className = {
+            } <div className = {
                 classnames(
                     "absolute w-auto max-w-[400px] z-10 top-[calc(100%)] left-[-30px] bg-white/80 backdrop-blur shadow-lg py-4 px-5 rounded-xl flex shadow-gray-500/50 dark:shadow-black/80 border border-gray-400 flex-col dark:border-gray-800 dark:bg-black/80 duration-200", {
                         "opacity-0 pointer-events-none scale-[0.9]": !bgPicker,
@@ -250,8 +250,7 @@ export default function Main() {
 
 
 
-            <
-            div className = "absolute top-[5%] right-[5%] opacity-50 cursor-pointer hover:opacity-100 z-10"
+            <div className = "absolute top-[5%] right-[5%] opacity-50 cursor-pointer hover:opacity-100 z-10"
             onClick = {
                 () => setBGPicker(false)
             } > ✕
@@ -259,17 +258,12 @@ export default function Main() {
 
 
 
-            <
-            /div>     <
-            div className = "relative mb-3" > { /* Pick Start Color */ } <
-            div className = "mb-1" > Pick first color < /div>     <
-            div className = "flex items-center" >
+            </div>     <div className = "relative mb-3" > { /* Pick Start Color */ } <div className = "mb-1" > Pick first color </div>     <div className = "flex items-center" >
 
 
 
 
-            <
-            div className = "relative group" >
+            <div className = "relative group" >
 
 
 
@@ -292,7 +286,7 @@ export default function Main() {
             />     <
             label style = {
                 {
-                    backgroundColor: options ?.customTheme ?.colorStart || "#222",
+                    backgroundColor: options?.customTheme?.colorStart || "#222",
                 }
             }
             htmlFor = "startColorPicker"
@@ -301,17 +295,12 @@ export default function Main() {
 
 
 
-            <
-            span className = "font-mono text-xs text-white/80 drop-shadow" >
-            Pick <
-            /span>   < /
-            label >
+            <span className = "font-mono text-xs text-white/80 drop-shadow" >
+            Pick </span>   </label >
 
 
 
-            <
-            /div>     <
-            span className = "px-4 opacity-50" > /</span >
+            </div>     <span className = "px-4 opacity-50" > /</span >
 
 
 
@@ -342,25 +331,19 @@ export default function Main() {
                     }
                 }
             }
-            />     < /
-            div > <
-            /div>
+            />     </div > </div>
 
-            { /* Pick End Color */ } <
-            div >
+            { /* Pick End Color */ } <div>
 
 
 
 
-            <
-            div className = "mb-1" > Pick second color < /div>     <
-            div className = "flex items-center" >
+            <div className = "mb-1" > Pick second color </div>     <div className = "flex items-center" >
 
 
 
 
-            <
-            div className = "relative group" >
+            <div className = "relative group" >
 
 
 
@@ -383,7 +366,7 @@ export default function Main() {
             />     <
             label style = {
                 {
-                    backgroundColor: options ?.customTheme ?.colorEnd || "#222",
+                    backgroundColor: options?.customTheme?.colorEnd || "#222",
                 }
             }
             htmlFor = "startColorPicker"
@@ -392,17 +375,12 @@ export default function Main() {
 
 
 
-            <
-            span className = "font-mono text-xs text-white/80 drop-shadow" >
-            Pick <
-            /span>   < /
-            label >
+            <span className = "font-mono text-xs text-white/80 drop-shadow" >
+            Pick </span>   </label >
 
 
 
-            <
-            /div>     <
-            span className = "px-4 opacity-50" > /</span >
+            </div>     <span className = "px-4 opacity-50" > /</span >
 
 
 
@@ -433,23 +411,17 @@ export default function Main() {
                     }
                 }
             }
-            />     < /
-            div > <
-            /div>     < /
-            div > <
-            />
+            />     </div > </div>     </div > </>
         );
     };
 
     const renderOptions = () => {
-        return ( <
-            div className = "sticky top-0 flex items-center lg:min-h-screen" >
+        return ( <div className = "sticky top-0 flex items-center lg:min-h-screen">
 
 
 
 
-            <
-            div className = {
+            <div className = {
                 classnames(
                     "p-6 lg:p-8 h-auto bg-white/90 dark:bg-pink-600/60 rounded-2xl ring-1 ring-pink-300 dark:ring-pink-200/50 ring-offset-1 ring-offset-white dark:ring-offset-red-800 shadow-lg shadow-gray-200 dark:shadow-black lg:max-h-screen w-full relative lg:min-h-[650px] mt-10 lg:mt-0"
                 )
@@ -458,35 +430,28 @@ export default function Main() {
 
 
 
-            <
-            div className = "absolute inset-0 w-full lg:h-full bg-gradient-to-br from-pink-400 dark:from-pink-500 dark:to-red-800 to-red-300 blur-xl dark:blur-md lg:scale-y-[1.05] scale-100 lg:scale-x-[1.1] dark:lg:scale-[1.05] lg:max-h-[calc(100vh-60px)] transform-gpu opacity-60" / >
+            <div className = "absolute inset-0 w-full lg:h-full bg-gradient-to-br from-pink-400 dark:from-pink-500 dark:to-red-800 to-red-300 blur-xl dark:blur-md lg:scale-y-[1.05] scale-100 lg:scale-x-[1.1] dark:lg:scale-[1.05] lg:max-h-[calc(100vh-60px)] transform-gpu opacity-60" / >
 
 
 
 
-            <
-            div className = "relative flex flex-row flex-wrap items-start justify-start space-y-5 lg:items-start lg:flex-col lg:space-y-4" >
+            <div className = "relative flex flex-row flex-wrap items-start justify-start space-y-5 lg:items-start lg:flex-col lg:space-y-4" >
 
 
 
 
-            <
-            div className = "flex items-center justify-between w-full" >
+            <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" >
-            Aspect Ratio <
-            /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" >
+            Aspect Ratio </div>     <div >
 
 
 
 
-            <
-            select value = { options.aspectRatio }
+            <select value = { options.aspectRatio }
             className = "px-2 py-1 border border-gray-500 rounded-lg shadow-lg appearance-none cursor-pointer opacity-80 hover:opacity-100"
             onChange = {
                 (e) =>
@@ -497,27 +462,19 @@ export default function Main() {
 
 
             <
-            option value = "aspect-auto" > Auto < /option>     <
-            option value = "aspect-square" > Square < /option>     < /
-            select > <
-            /div>     < /
-            div > <
-            div className = "flex items-center justify-between w-full" >
+            option value = "aspect-auto" > Auto </option>     <
+            option value = "aspect-square" > Square </option>     </select > </div>     </div > <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" >
-            Browser Wrapper <
-            /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" >
+            Browser Wrapper </div>     <div >
 
 
 
 
-            <
-            select value = { options.browserBar }
+            <select value = { options.browserBar }
             className = "px-2 py-1 border border-gray-500 rounded-lg shadow-lg appearance-none cursor-pointer opacity-80 hover:opacity-100"
             onChange = {
                 (e) =>
@@ -528,28 +485,20 @@ export default function Main() {
 
 
             <
-            option value = "hidden" > None < /option>     <
-            option value = "light" > Light < /option>     <
-            option value = "dark" > Dark < /option>     < /
-            select > <
-            /div>     < /
-            div > <
-            div className = "flex items-center justify-between w-full" >
+            option value = "hidden" > None </option>     <
+            option value = "light" > Light </option>     <
+            option value = "dark" > Dark </option>     </select > </div>     </div > <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" >
-            Padding <
-            /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" >
+            Padding </div>     <div >
 
 
 
 
-            <
-            select value = { options.padding }
+            <select value = { options.padding }
             className = "px-2 py-1 border border-gray-500 rounded-lg shadow-lg appearance-none cursor-pointer opacity-80 hover:opacity-100"
             onChange = {
                 (e) =>
@@ -560,28 +509,21 @@ export default function Main() {
 
 
             <
-            option value = "p-0" > None < /option>     <
-            option value = "p-5" > Small < /option>     <
-            option value = "p-10" > Medium < /option>     <
-            option value = "p-32" > Large < /option>     < /
-            select > <
-            /div>     < /
-            div > <
-            div className = "" >
+            option value = "p-0" > None </option>     <
+            option value = "p-5" > Small </option>     <
+            option value = "p-10" > Medium </option>     <
+            option value = "p-32" > Large </option>     </select > </div>     </div > <div className = "" >
 
 
 
 
-            <
-            div className = "relative flex items-center pb-2 text-sm font-semibold dark:text-white" >
-            Background <
-            div className = "relative" >
+            <div className = "relative flex items-center pb-2 text-sm font-semibold dark:text-white" >
+            Background <div className = "relative" >
 
 
 
 
-            <
-            div onClick = {
+            <div onClick = {
                 () => setBGPicker(!bgPicker)
             }
             className = "flex items-center px-2 ml-2 border border-gray-400 rounded-lg cursor-pointer bg-white/70 opacity-70 hover:opacity-100 dark:bg-pink-900/80 dark:border-red-600 dark:text-gray-300" >
@@ -589,13 +531,8 @@ export default function Main() {
 
 
 
-            <
-            span className = "w-3 h-3 mr-1" > { ColorPickerIcon } < /span>
-            Pick <
-            /div>     < /
-            div > { pickBackground() } <
-            /div>     <
-            div className = "grid flex-wrap grid-cols-6 mt-1 gap-x-4 gap-y-2" > {
+            <span className = "w-3 h-3 mr-1" > { ColorPickerIcon } </span>
+            Pick </div>     </div > { pickBackground() } </div>     <div className = "grid flex-wrap grid-cols-6 mt-1 gap-x-4 gap-y-2" > {
                 [
                     "bg-gradient-to-br from-pink-300 via-orange-200 to-red-300",
                     "bg-gradient-to-br from-green-300 via-yellow-200 to-green-200",
@@ -623,25 +560,18 @@ export default function Main() {
                     }
                     />
                 ))
-            } <
-            /div>     < /
-            div > <
-            div className = "flex items-center justify-between w-full" >
+            } </div>     </div > <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" >
-            Wrapper Rounded Corners <
-            /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" >
+            Wrapper Rounded Corners </div>     <div >
 
 
 
 
-            <
-            select value = { options.roundedWrapper }
+            <select value = { options.roundedWrapper }
             className = "px-2 py-1 border border-gray-500 rounded-lg shadow-lg appearance-none cursor-pointer opacity-80 hover:opacity-100"
             onChange = {
                 (e) =>
@@ -652,29 +582,21 @@ export default function Main() {
 
 
             <
-            option value = "rounded-none" > None < /option>     <
-            option value = "rounded-lg" > Small < /option>     <
-            option value = "rounded-xl" > Medium < /option>     <
-            option value = "rounded-3xl" > Large < /option>     < /
-            select > <
-            /div>     < /
-            div > <
-            div className = "flex items-center justify-between w-full" >
+            option value = "rounded-none" > None </option>     <
+            option value = "rounded-lg" > Small </option>     <
+            option value = "rounded-xl" > Medium </option>     <
+            option value = "rounded-3xl" > Large </option>     </select > </div>     </div > <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" >
-            Screenshot Rounded Corners <
-            /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" >
+            Screenshot Rounded Corners </div>     <div >
 
 
 
 
-            <
-            select value = { options.rounded }
+            <select value = { options.rounded }
             className = "px-2 py-1 border border-gray-500 rounded-lg shadow-lg appearance-none cursor-pointer opacity-80 hover:opacity-100"
             onChange = {
                 (e) =>
@@ -685,29 +607,21 @@ export default function Main() {
 
 
             <
-            option value = "rounded-none" > None < /option>     <
-            option value = "rounded-lg" > Small < /option>     <
-            option value = "rounded-xl" > Medium < /option>     <
-            option value = "rounded-3xl" > Large < /option>     < /
-            select > <
-            /div>     < /
-            div > <
-            div className = "flex items-center justify-between w-full" >
+            option value = "rounded-none" > None </option>     <
+            option value = "rounded-lg" > Small </option>     <
+            option value = "rounded-xl" > Medium </option>     <
+            option value = "rounded-3xl" > Large </option>     </select > </div>     </div > <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" >
-            Screenshot Position <
-            /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" >
+            Screenshot Position </div>     <div >
 
 
 
 
-            <
-            select value = { options.position }
+            <select value = { options.position }
             className = "px-2 py-1 border border-gray-500 rounded-lg shadow-lg appearance-none cursor-pointer opacity-80 hover:opacity-100"
             onChange = {
                 (e) =>
@@ -718,30 +632,22 @@ export default function Main() {
 
 
             <
-            option value = "" > Center < /option>     <
-            option value = "pl-0 pt-0" > Top left < /option>     <
-            option value = "pt-0 pr-0" > Top right < /option>     <
-            option value = "pb-0 pl-0" > Bottom left < /option>     <
-            option value = "pb-0 pr-0" > Bottom right < /option>     < /
-            select > <
-            /div>     < /
-            div > <
-            div className = "flex items-center justify-between w-full" >
+            option value = "" > Center </option>     <
+            option value = "pl-0 pt-0" > Top left </option>     <
+            option value = "pt-0 pr-0" > Top right </option>     <
+            option value = "pb-0 pl-0" > Bottom left </option>     <
+            option value = "pb-0 pr-0" > Bottom right </option>     </select > </div>     </div > <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" >
-            Shadow <
-            /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" >
+            Shadow </div>     <div >
 
 
 
 
-            <
-            select value = { options.shadow }
+            <select value = { options.shadow }
             className = "px-2 py-1 border border-gray-500 rounded-lg shadow-lg appearance-none cursor-pointer opacity-80 hover:opacity-100"
             onChange = {
                 (e) =>
@@ -752,66 +658,49 @@ export default function Main() {
 
 
             <
-            option value = "shadow-none" > None < /option>     <
-            option value = "shadow-lg" > Small < /option>     <
-            option value = "shadow-xl" > Medium < /option>     <
-            option value = "shadow-2xl" > Large < /option>     < /
-            select > <
-            /div>     < /
-            div > <
-            div className = "flex items-center justify-between w-full" >
+            option value = "shadow-none" > None </option>     <
+            option value = "shadow-lg" > Small </option>     <
+            option value = "shadow-xl" > Medium </option>     <
+            option value = "shadow-2xl" > Large </option>     </select > </div>     </div > <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "text-sm font-semibold dark:text-white" > Noise < /div>     <
-            div >
+            <div className = "text-sm font-semibold dark:text-white" > Noise </div>     <div >
 
 
 
 
             <
             input type = "checkbox"
-            checked = { options ?.noise || false }
+            checked = { options?.noise || false }
             className = "text-xl"
             onChange = {
                 (e) =>
-                setOptions({...options, noise: !options ?.noise })
+                setOptions({...options, noise: !options?.noise })
             }
-            />     < /
-            div > <
-            /div>     <
-            div className = "flex items-center justify-between w-full" >
+            />     </div > </div>     <div className = "flex items-center justify-between w-full" >
 
 
 
 
-            <
-            div className = "flex items-center justify-center px-4 py-2 hover:scale-[1.03] duration-200 text-base lg:text-lg font-semibold text-pink-600 bg-pink-200 rounded-lg shadow cursor-pointer border border-pink-600 w-full"
+            <div className = "flex items-center justify-center px-4 py-2 hover:scale-[1.03] duration-200 text-base lg:text-lg font-semibold text-pink-600 bg-pink-200 rounded-lg shadow cursor-pointer border border-pink-600 w-full"
             onClick = { copyImage }
             title = "Use Ctrl/Cmd + C to copy the image" >
 
 
 
 
-            <
-            span className = "w-6 h-6 mr-2" > { ClipboardIcon } < /span>
-            Copy <
-            /div>     <
-            div className = "flex items-center justify-center px-4 py-2 hover:scale-[1.03] duration-200 text-base lg:text-lg font-semibold bg-pink-600/90 dark:bg-pink-600/90 text-pink-200 rounded-lg shadow cursor-pointer border border-pink-600 w-full ml-4"
+            <span className = "w-6 h-6 mr-2" > { ClipboardIcon } </span>
+            Copy </div>     <div className = "flex items-center justify-center px-4 py-2 hover:scale-[1.03] duration-200 text-base lg:text-lg font-semibold bg-pink-600/90 dark:bg-pink-600/90 text-pink-200 rounded-lg shadow cursor-pointer border border-pink-600 w-full ml-4"
             title = "Use Ctrl/Cmd + S to save the image"
             onClick = { saveImage } >
 
 
 
 
-            <
-            span className = "w-6 h-6 mr-2" > { SaveIcon } < /span>
-            Save <
-            /div>     < /
-            div > <
-            div onClick = {
+            <span className = "w-6 h-6 mr-2" > { SaveIcon } </span>
+            Save </div>     </div > <div onClick = {
                 () => setBlob({})
             }
             className = "flex items-center justify-center w-full px-3 py-1 mx-auto mt-4 text-sm text-pink-400 rounded-lg cursor-pointer" >
@@ -819,41 +708,30 @@ export default function Main() {
 
 
 
-            <
-            span className = "w-4 h-4 mr-1" > { ResetIcon } < /span>
-            Reset <
-            /div>     <
-            div className = "hidden mx-auto text-sm text-center opacity-50 dark:text-white lg:block" >
+            <span className = "w-4 h-4 mr-1" > { ResetIcon } </span>
+            Reset </div>     <div className = "hidden mx-auto text-sm text-center opacity-50 dark:text-white lg:block" >
 
 
 
 
-            <
-            div className = "mb-1" >
-            Use { " " } <
-            span className = "px-2 py-px font-mono rounded-lg dark:bg-black/40 bg-white/80" >
-            Cmd / Ctrl + C <
-            /span>{" "}
-            to copy or <
-            /div>  <
-            div >
+            <div className = "mb-1" >
+            Use { " " } <span className = "px-2 py-px font-mono rounded-lg dark:bg-black/40 bg-white/80" >
+            Cmd / Ctrl + C </span>{" "}
+            to copy or </div>  <div >
 
-            <
-            span className = "px-2 py-px font-mono rounded-lg bg-white/80 dark:bg-black/40" >
-            Cmd / Ctrl + S <
-            /span>{" "}
-            to save output image < /div>   < /
-            div > < /div > < /div > < /div >
+            <span className = "px-2 py-px font-mono rounded-lg bg-white/80 dark:bg-black/40" >
+            Cmd / Ctrl + S </span>{" "}
+            to save output image </div>   </div > </div> </div> </div>
 
         );
     };
 
     const getImageRadius = () => {
-        if (options ?.padding == "p-0") {
+        if (options?.padding == "p-0") {
             return "";
         }
 
-        switch (options ?.position) {
+        switch (options?.position) {
             case "pl-0 pt-0":
                 return "rounded-l-none rounded-tr-none";
             case "pt-0 pr-0":
@@ -868,7 +746,7 @@ export default function Main() {
     };
 
     const renderBrowserBar = () => {
-        switch (options ?.browserBar) {
+        switch (options?.browserBar) {
             case "hidden":
                 return "";
             case "light":
@@ -902,9 +780,7 @@ export default function Main() {
 
 
 
-                    <
-                    /div>     < /
-                    div >
+                    </div>     </div>
                 );
             case "dark":
                 return ( <
@@ -937,9 +813,7 @@ export default function Main() {
 
 
 
-                    <
-                    /div>     < /
-                    div >
+                    </div>     </div>
                 );
             case "default":
                 return "";
@@ -961,10 +835,9 @@ export default function Main() {
 
 
         <
-        span className = "w-5 h-5 mx-1" > { TwitterIcon } < /span>
-        Created by Rishi Mohan modified by daStorm <
-        /a>     <
-        span className = "hidden px-2 lg:block" > - < /span>     <
+        span className = "w-5 h-5 mx-1" > { TwitterIcon } </span>
+        Created by Rishi Mohan modified by daStorm </a>     <
+        span className = "hidden px-2 lg:block" > - </span>     <
         a href = "https://github.com/rishimohan/pika"
         target = "_blank"
         className = "flex items-center mt-2 hover:underline lg:mt-0" >
@@ -973,10 +846,9 @@ export default function Main() {
 
 
         <
-        span className = "w-5 h-5 mx-1" > { GithubIcon } < /span>
-        View Code on Github <
-        /a>     <
-        span className = "hidden px-2 lg:block" > - < /span>     <
+        span className = "w-5 h-5 mx-1" > { GithubIcon } </span>
+        View Code on Github </a>     <
+        span className = "hidden px-2 lg:block" > - </span>     <
         a href = "https://www.buymeacoffee.com/thelifeofrishi"
         target = "_blank"
         className = "flex items-center mt-2 hover:underline lg:mt-0" >
@@ -985,10 +857,8 @@ export default function Main() {
 
 
         <
-        span className = "w-5 h-5 mx-1" > { CoffeeIcon } < /span>
-        Buy me a coffee <
-        /a>     < /
-        div >
+        span className = "w-5 h-5 mx-1" > { CoffeeIcon } </span>
+        Buy me a coffee </a>     </div>
     );
 
     return ( <
@@ -1020,10 +890,9 @@ export default function Main() {
 
 
         <
-        div className = "w-full lg:w-[350px]" > { renderOptions() } < /div>     <
+        div className = "w-full lg:w-[350px]" > { renderOptions() } </div>     <
         div className = "w-full lg:w-[calc(100%-350px)] py-5 lg:p-10 lg:pl-0 flex flex-col-reverse lg:flex-col items-center justify-center overflow-y-auto" > {
-            blob ?.src ? ( <
-                >
+            blob?.src ? ( <>
 
 
 
@@ -1039,7 +908,7 @@ export default function Main() {
                     (el) => (wrapperRef.current = el)
                 }
                 style = {
-                    options ?.customTheme ? {
+                    options?.customTheme ? {
                         background: `linear-gradient(135deg, ${
                             options?.customTheme?.colorStart || "transparent"
                           }, ${
@@ -1050,15 +919,15 @@ export default function Main() {
                 className = {
                     classnames(
                         "transition-all duration-200 relative ease-in-out flex items-center justify-center overflow-hidden max-w-[80vw] flex-col",
-                        options ?.aspectRatio,
-                        options ?.padding,
-                        options ?.position,
-                        options ?.roundedWrapper, {
-                            [options ?.theme]: !options.customTheme
+                        options?.aspectRatio,
+                        options?.padding,
+                        options?.position,
+                        options?.roundedWrapper, {
+                            [options?.theme]: !options.customTheme
                         }
                     )
                 } > { renderBrowserBar() } {
-                    options ?.noise ? ( <
+                    options?.noise ? ( <
                         div style = {
                             { backgroundImage: `url("/noise.svg")` }
                         }
@@ -1072,10 +941,10 @@ export default function Main() {
                         ""
                     )
                 } <
-                img src = { blob ?.src }
+                img src = { blob?.src }
                 style = {
-                    blob ?.w ? {
-                        width: blob ?.w / window.devicePixelRatio + "px",
+                    blob?.w ? {
+                        width: blob?.w / window.devicePixelRatio + "px",
                     } : {}
                 }
                 className = { `relative z-10s transition-all duration-200 ease-in-out ${
@@ -1092,9 +961,7 @@ export default function Main() {
                         });
                     }
                 }
-                />     < /
-                div > <
-                /div> </ >
+                />     </div> </div> </ >
             ) : ( <
                 div className = "flex items-center justify-center min-h-[50vh] lg:min-h-[80vh]" >
 
@@ -1114,12 +981,10 @@ export default function Main() {
                 type = "file"
                 onChange = { onPaste }
                 />     <
-                span className = "w-6 h-6 mb-2" > { PasteIcon } < /span>     <
-                p > Paste your screenshot(Cmd / Ctrl + V) < /p>     <
-                p > or drag and drop your screenshot here < /p>     <
-                p > or click here to add one < /p>     < /
-                label > <
-                /div>
+                span className = "w-6 h-6 mb-2" > { PasteIcon } </span>     <
+                p > Paste your screenshot(Cmd / Ctrl + V) </p>     <
+                p > or drag and drop your screenshot here </p>     <
+                p > or click here to add one </p>     </label> </div>
             )
         } <
         RenderMaker / >
@@ -1127,9 +992,6 @@ export default function Main() {
 
 
 
-        <
-        /div>     < /
-        div > <
-        /div>
+        </div>     </div> </div>
     );
 }
